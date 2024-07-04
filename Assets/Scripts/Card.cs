@@ -7,19 +7,21 @@ using DG.Tweening;
 
 public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Sprite _faceSprite;
-    [SerializeField] private Sprite _backSprite;
     [SerializeField] private Image _cardImage;
 
     public static event Action<Card> SelectCard;
 
+    private Sprite _faceSprite;
+    private Sprite _backSprite;
     private bool _canRotate = true;
     private bool _pairWasFound = false;
 
     public Sprite FaceSprite { get => _faceSprite; }
 
-    private void Start()
+    public void Initialize(Sprite backSprite, Sprite faceSprite)
     {
+        _backSprite = backSprite;
+        _faceSprite = faceSprite;
         _cardImage.sprite = _backSprite;
     }
 

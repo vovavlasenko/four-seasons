@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TableGenerator : MonoBehaviour
 {
     [SerializeField] private GameSettings _gameSettings;
-    [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private CardSpawner _cardSpawner;
 
     private RectTransform _rectTransform;
     private GridLayoutGroup _grid;
@@ -67,12 +67,8 @@ public class TableGenerator : MonoBehaviour
         _grid.cellSize = new Vector2(cardSide, cardSide); // Making card square-shaped
     }
 
-
     private void SpawnCards()
     {
-        for (int i = 0; i < _rows * _columns; i++)
-        {
-            Instantiate(_cardPrefab, transform);
-        }
+        _cardSpawner.SpawnCards(_rows * _columns);
     }
 }

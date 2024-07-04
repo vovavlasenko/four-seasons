@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _faceSprite: {fileID: -50235737, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  _backSprite: {fileID: 871237640, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
+  _backSprite: {fileID: 21300000, guid: 5ece458ef465fba4cbb0ccc40edf9d36, type: 3}
   _cardImage: {fileID: 2937318704124766043}
 --- !u!1 &8776363283845493933
 GameObject:
