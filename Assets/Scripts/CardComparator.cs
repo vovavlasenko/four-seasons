@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CardComparator : MonoBehaviour
 {
+    [SerializeField] private ScoreCounter _scoreCounter;
+
     private Card _firstCard;
     private Card _secondCard;
 
@@ -36,6 +38,7 @@ public class CardComparator : MonoBehaviour
         {
             _firstCard.OnPairFound();
             _secondCard.OnPairFound();
+            _scoreCounter.AddScore();
         }
 
         else
