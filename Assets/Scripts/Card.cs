@@ -1,16 +1,16 @@
 using UnityEngine.UI;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 using System;
 using DG.Tweening;
 
-public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class Card : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image _cardImage;
     [SerializeField] private GameSettings _gameSettings;
 
-    public static event Action<Card> SelectCard;
+    public static event Action CardTouched;
+    public static event Action<Card> CardRevealed;
 
     private Sprite _faceSprite;
     private Sprite _backSprite;
@@ -32,6 +32,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         if (_canRotate && !_pairWasFound)
         {
+            CardTouched?.Invoke();
             StartRevealingCard();
         }
     }
@@ -51,7 +52,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     private void FinishRevealingCard()
     {
         _cardImage.sprite = _faceSprite;
-        CardFlipWithCallback(180f, OnCardSelected);
+        CardFlipWithCallback(180f, OnCardRevealed);
     }
 
     public void StartUnrevealingCard()
@@ -70,9 +71,9 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         _canRotate = true;
     }
 
-    private void OnCardSelected()
+    private void OnCardRevealed()
     {
-        SelectCard?.Invoke(this);
+        CardRevealed?.Invoke(this);
     }
 
     public void OnPairFound()
@@ -88,14 +89,4 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         _cardImage.transform.localScale = Vector3.zero;
     }
 
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-       // transform.localScale = new Vector3(1.1f, 1.1f);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-       // transform.localScale = new Vector3(1f, 1f);
-    }
 }

@@ -9,6 +9,16 @@ public class ScoreCounter : MonoBehaviour
     
     private int _score;
 
+    private void OnEnable()
+    {
+        CardComparator.PairFound += AddScore;
+    }
+
+    private void OnDisable()
+    {
+        CardComparator.PairFound -= AddScore;
+    }
+
     private void Start()
     {
         if(_gameSettings.IsNewGame)

@@ -26,7 +26,9 @@ MonoBehaviour:
   - {fileID: 587968530, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -1483767056, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -411250730, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  SpriteIndexes: 04000000060000000600000004000000
+  SpriteIndexes: 00000000020000000000000002000000
   WasFoundPair: 01010101
+  CardsLeftOnScene: 0
   CurrentScore: 2
-  IsNewGame: 0
+  IsNewGame: 1
+  CanContinueGame: 0

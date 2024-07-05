@@ -2,9 +2,11 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Button))]
 public class GameModeButton : MonoBehaviour
 {
     [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private MainMenuController _mainMenuController;
     [SerializeField] private int _rows;
     [SerializeField] private int _columns;
 
@@ -25,13 +27,14 @@ public class GameModeButton : MonoBehaviour
         _button.onClick.RemoveListener(StartNewGame);
     }
 
+
+
     private void StartNewGame()
     {
         _gameSettings.RowsAmount = _rows;
         _gameSettings.ColumnsAmount = _columns;
         _gameSettings.IsNewGame = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        _mainMenuController.ShowBlackScreenOnNewGameStart();
     }
-
 
 }

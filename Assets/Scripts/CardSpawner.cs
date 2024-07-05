@@ -27,7 +27,7 @@ public class CardSpawner : MonoBehaviour
                 int r = Random.Range(0, availableSprites.Count);
 
                 CreateCard(i, availableSprites[r]);
-
+                _gameSettings.CardsLeftOnScene++;
                 _gameSettings.WasFoundPair.Add(false);
                 _gameSettings.SpriteIndexes.Add(_gameSettings.CardFaces.IndexOf(availableSprites[r])); //
                 availableSprites.RemoveAt(r);
@@ -62,6 +62,7 @@ public class CardSpawner : MonoBehaviour
     {
         _gameSettings.SpriteIndexes.Clear();
         _gameSettings.WasFoundPair.Clear();
+        _gameSettings.CardsLeftOnScene = 0;
     }
 
     private List<Sprite> GenerateNewSprites(int amount)

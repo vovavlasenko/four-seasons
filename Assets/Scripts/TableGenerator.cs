@@ -34,6 +34,7 @@ public class TableGenerator : MonoBehaviour
         SetGridConstraint();
         SetFinalCardSize();
         SpawnCards();
+        _gameSettings.CanContinueGame = true;
     }
     
     private void GetLayoutInfo()
@@ -73,8 +74,4 @@ public class TableGenerator : MonoBehaviour
        _cardSpawner.SpawnCards(_rows * _columns);
     }
 
-    public void ContinueGame(int rows, int columns, List<bool> hasPair, int spriteIndex)
-    {
-
-    }
 }
