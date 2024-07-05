@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Game Settings")]
@@ -7,5 +8,10 @@ public class GameSettings : ScriptableObject
     public int RowsAmount;
     public int ColumnsAmount;
 
+    [Header("Cards")]
+    public Sprite CardBack;
+    public List<Sprite> CardFaces;
+    public List<int> SpriteIndexes = new List<int>();
+    public List<bool> WasFoundPair = new List<bool>();
 
 }

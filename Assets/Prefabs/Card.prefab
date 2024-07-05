@@ -90,9 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e3579852f639a4e97e29e741dcaeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _faceSprite: {fileID: -50235737, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  _backSprite: {fileID: 21300000, guid: 5ece458ef465fba4cbb0ccc40edf9d36, type: 3}
   _cardImage: {fileID: 2937318704124766043}
+  _gameSettings: {fileID: 11400000, guid: 6afed780f0050bf41b95fe31e39a339f, type: 2}
 --- !u!1 &8776363283845493933
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -69,6 +70,11 @@ public class TableGenerator : MonoBehaviour
 
     private void SpawnCards()
     {
-        _cardSpawner.SpawnCards(_rows * _columns);
+       _cardSpawner.SpawnCards(_rows * _columns);
+    }
+
+    public void ContinueGame(int rows, int columns, List<bool> hasPair, int spriteIndex)
+    {
+
     }
 }

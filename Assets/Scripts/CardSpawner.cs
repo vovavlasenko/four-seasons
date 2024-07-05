@@ -6,14 +6,71 @@ public class CardSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private Transform _cardParentTransform;
-    [SerializeField] private List<Sprite> _faceSprites;
-    [SerializeField] private Sprite _backSprite;
+    [SerializeField] private GameSettings _gameSettings;
+
+    public bool _isNewGame;
+
+    private List<Sprite> _faceSprites = new List<Sprite>();
 
     public void SpawnCards(int amount)
     {
-        List<Sprite> availableSprites = new List<Sprite>(amount/2);
+        FillFaceSpritesList();
 
-        for (int i = 0; i < amount/2; i++)
+        List<Sprite> availableSprites = new List<Sprite>(amount / 2);
+
+        availableSprites = GenerateNewSprites(amount);
+
+        if (_isNewGame)
+        {
+            ClearPastData();
+
+            for (int i = 0; i < amount; i++)
+            {
+                int r = Random.Range(0, availableSprites.Count);
+
+                CreateCard(i, availableSprites[r]);
+
+                _gameSettings.WasFoundPair.Add(false);
+                _gameSettings.SpriteIndexes.Add(_gameSettings.CardFaces.IndexOf(availableSprites[r])); //
+                availableSprites.RemoveAt(r);
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                var card = CreateCard(i, _gameSettings.CardFaces[_gameSettings.SpriteIndexes[i]]);
+
+                if (_gameSettings.WasFoundPair[i] == true)
+                {
+                    card.RemoveFromLocation();
+                }
+            }
+        }
+    }
+
+    private void FillFaceSpritesList()
+    {
+        _faceSprites.Clear();
+
+        for (int i = 0; i < _gameSettings.CardFaces.Count; i++)
+        {
+            _faceSprites.Add(_gameSettings.CardFaces[i]);
+        }
+    }
+
+    private void ClearPastData()
+    {
+        _gameSettings.SpriteIndexes.Clear();
+        _gameSettings.WasFoundPair.Clear();
+    }
+
+    private List<Sprite> GenerateNewSprites(int amount)
+    {
+        List<Sprite> availableSprites = new List<Sprite>(amount / 2);
+
+        for (int i = 0; i < amount / 2; i++)
         {
             int r = Random.Range(0, _faceSprites.Count);
 
@@ -21,16 +78,23 @@ public class CardSpawner : MonoBehaviour
             {
                 availableSprites.Add(_faceSprites[r]);
             }
-           
+
             _faceSprites.RemoveAt(r);
         }
 
-        for (int i = 0; i < amount; i++)
-        {
-            int r = Random.Range(0, availableSprites.Count);
-            var card = Instantiate(_cardPrefab, _cardParentTransform);
-            card.GetComponent<Card>().Initialize(_backSprite, availableSprites[r]);
-            availableSprites.RemoveAt(r);
-        }
+        return availableSprites;
     }
+
+    private Card CreateCard(int id, Sprite faceSprite)
+    {
+        var card = Instantiate(_cardPrefab, _cardParentTransform);
+        Card cardScript = card.GetComponent<Card>();
+
+        cardScript.Initialize
+            (_gameSettings.CardBack, faceSprite, id);
+
+        return cardScript;
+    }
+
+
 }

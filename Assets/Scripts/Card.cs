@@ -8,6 +8,7 @@ using DG.Tweening;
 public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _cardImage;
+    [SerializeField] private GameSettings _gameSettings;
 
     public static event Action<Card> SelectCard;
 
@@ -15,14 +16,16 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     private Sprite _backSprite;
     private bool _canRotate = true;
     private bool _pairWasFound = false;
+    private int _id;
 
     public Sprite FaceSprite { get => _faceSprite; }
 
-    public void Initialize(Sprite backSprite, Sprite faceSprite)
+    public void Initialize(Sprite backSprite, Sprite faceSprite, int id)
     {
         _backSprite = backSprite;
         _faceSprite = faceSprite;
         _cardImage.sprite = _backSprite;
+        _id = id;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -77,6 +80,12 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         _canRotate = false;
         _pairWasFound = true;
         _cardImage.transform.DOScale(0, 0.5f);
+        _gameSettings.WasFoundPair[_id] = true; // id надо сохранять
+    }
+
+    public void RemoveFromLocation()
+    {
+        _cardImage.transform.localScale = Vector3.zero;
     }
 
 
