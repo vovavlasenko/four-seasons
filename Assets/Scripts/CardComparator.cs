@@ -6,10 +6,11 @@ public class CardComparator : MonoBehaviour
     [SerializeField] private GameSettings _gameSettings;
     [SerializeField] private SoundSystem _soundSystem;
 
-    public static event Action PairFound;
+    public static event Action<int> PairFound;
 
     private Card _firstCard;
     private Card _secondCard;
+    private int _comboMultiplier;
 
     private void OnEnable()
     {
@@ -40,18 +41,30 @@ public class CardComparator : MonoBehaviour
     {
         if (_firstCard.FaceSprite == _secondCard.FaceSprite)
         {
-            _soundSystem.PlayMatchSound();
-            _firstCard.OnPairFound();
-            _secondCard.OnPairFound();
-            _gameSettings.CardsLeftOnScene -= 2;
-             PairFound?.Invoke();
+            CardsMatched();
         }
 
         else
         {
-            _soundSystem.PlayMismatchSound();
-            _firstCard.StartUnrevealingCard();
-            _secondCard.StartUnrevealingCard();
+            CardsMismatched();
         }
+    }
+
+    private void CardsMatched()
+    {
+        _gameSettings.CardsLeftOnScene -= 2;
+        _comboMultiplier++;
+        _soundSystem.PlayMatchSound();
+        _firstCard.OnPairFound();
+        _secondCard.OnPairFound();
+        PairFound?.Invoke(_comboMultiplier);
+    }
+
+    private void CardsMismatched()
+    {
+        _comboMultiplier = 0;
+        _soundSystem.PlayMismatchSound();
+        _firstCard.StartUnrevealingCard();
+        _secondCard.StartUnrevealingCard();
     }
 }

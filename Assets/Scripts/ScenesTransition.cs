@@ -24,7 +24,7 @@ public class ScenesTransition : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void CheckWinCondition()
+    private void CheckWinCondition(int i)
     {
         if (_gameSettings.CardsLeftOnScene == 0)
         {

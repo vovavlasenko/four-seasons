@@ -6,6 +6,7 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] private GameSettings _gameSettings;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _comboText;
     
     private int _score;
 
@@ -35,16 +36,30 @@ public class ScoreCounter : MonoBehaviour
         RefreshTextDisplayed();
     }
 
-    public void AddScore()
+    public void AddScore(int comboMultiplier)
     {
-        _score++;
+        _score += comboMultiplier;
         _gameSettings.CurrentScore = _score;
         RefreshTextDisplayed();
         _scoreText.transform.DOShakeScale(0.5f, 1);
+
+        if (comboMultiplier > 1)
+        {
+            DisplayComboText(comboMultiplier);
+        }
     }
 
     private void RefreshTextDisplayed()
     {
         _scoreText.SetText($"{_score}");
+    }
+
+    private void DisplayComboText(int comboMultiplier)
+    {
+        int shakeValue = Mathf.Clamp(comboMultiplier, 2, 3);
+        _comboText.gameObject.SetActive(true);
+        _comboText.SetText($"COMBO x{comboMultiplier}");
+        _scoreText.transform.DOShakeScale(1f, shakeValue).OnComplete(() =>
+        _comboText.gameObject.SetActive(false));
     }
 }
