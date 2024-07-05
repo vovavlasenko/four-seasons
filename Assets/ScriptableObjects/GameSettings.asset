@@ -26,5 +26,7 @@ MonoBehaviour:
   - {fileID: 587968530, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -1483767056, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -411250730, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  SpriteIndexes: 07000000060000000600000007000000
+  SpriteIndexes: 04000000060000000600000004000000
   WasFoundPair: 01010101
+  CurrentScore: 2
+  IsNewGame: 0

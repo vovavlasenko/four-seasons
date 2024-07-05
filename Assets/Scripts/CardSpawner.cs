@@ -8,8 +8,6 @@ public class CardSpawner : MonoBehaviour
     [SerializeField] private Transform _cardParentTransform;
     [SerializeField] private GameSettings _gameSettings;
 
-    public bool _isNewGame;
-
     private List<Sprite> _faceSprites = new List<Sprite>();
 
     public void SpawnCards(int amount)
@@ -20,7 +18,7 @@ public class CardSpawner : MonoBehaviour
 
         availableSprites = GenerateNewSprites(amount);
 
-        if (_isNewGame)
+        if (_gameSettings.IsNewGame)
         {
             ClearPastData();
 

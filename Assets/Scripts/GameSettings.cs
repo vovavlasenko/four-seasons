@@ -14,4 +14,8 @@ public class GameSettings : ScriptableObject
     public List<int> SpriteIndexes = new List<int>();
     public List<bool> WasFoundPair = new List<bool>();
 
+    [Header("Other")]
+    public int CurrentScore;
+    public bool IsNewGame;
+
 }
