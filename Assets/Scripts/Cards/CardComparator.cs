@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CardComparator : MonoBehaviour
 {
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameSettings;
     [SerializeField] private SoundSystem _soundSystem;
 
     public static event Action<int> PairFound;

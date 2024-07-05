@@ -7,7 +7,7 @@ using DG.Tweening;
 public class Card : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image _cardImage;
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameSettings;
 
     public static event Action CardTouched;
     public static event Action<Card> CardRevealed;

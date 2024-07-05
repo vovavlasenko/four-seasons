@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesTransition : MonoBehaviour
+public class GameOverController : MonoBehaviour
 {
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameData;
     [SerializeField] private SoundSystem _soundSystem;
     [SerializeField] private BlackScreen _blackScreen;
 
@@ -26,12 +24,17 @@ public class ScenesTransition : MonoBehaviour
 
     private void CheckWinCondition(int i)
     {
-        if (_gameSettings.CardsLeftOnScene == 0)
+        if (_gameData.CardsLeftOnScene == 0)
         {
-            _soundSystem.PlayGameOverSound();
-            _gameSettings.CanContinueGame = false;
-            _blackScreen.Show(ExitToMainMenu);
+            GameOver();
         }    
+    }
+
+    private void GameOver()
+    {
+        _soundSystem.PlayGameOverSound();
+        _gameData.CanContinueGame = false;
+        _blackScreen.Show(ExitToMainMenu);
     }
 
 }

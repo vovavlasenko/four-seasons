@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-public class ScoreCounter : MonoBehaviour
+public class ScoreController : MonoBehaviour
 {
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameData;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _comboText;
     
@@ -22,15 +22,15 @@ public class ScoreCounter : MonoBehaviour
 
     private void Start()
     {
-        if(_gameSettings.IsNewGame)
+        if(_gameData.IsNewGame)
         {
             _score = 0;
-            _gameSettings.CurrentScore = 0;
+            _gameData.CurrentScore = 0;
         }    
 
         else
         {
-            _score = _gameSettings.CurrentScore;
+            _score = _gameData.CurrentScore;
         }
 
         RefreshTextDisplayed();
@@ -39,7 +39,7 @@ public class ScoreCounter : MonoBehaviour
     public void AddScore(int comboMultiplier)
     {
         _score += comboMultiplier;
-        _gameSettings.CurrentScore = _score;
+        _gameData.CurrentScore = _score;
         RefreshTextDisplayed();
         _scoreText.transform.DOShakeScale(0.5f, 1);
 

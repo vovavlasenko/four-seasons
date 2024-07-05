@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameData;
     [SerializeField] private BlackScreen _blackScreen;
     [SerializeField] private Button _continueButton;
 
@@ -20,7 +20,7 @@ public class MainMenuController : MonoBehaviour
 
     private void StartNewGame()
     {
-        _gameSettings.IsNewGame = true;
+        _gameData.IsNewGame = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -31,13 +31,13 @@ public class MainMenuController : MonoBehaviour
 
     private void ContinueGame()
     {
-        _gameSettings.IsNewGame = false;
+        _gameData.IsNewGame = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void UpdateInterface()
     {
-        if (_gameSettings.CanContinueGame)
+        if (_gameData.CanContinueGame)
         {
             _continueButton.interactable = true;
         }

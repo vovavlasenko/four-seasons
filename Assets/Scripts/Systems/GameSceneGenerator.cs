@@ -1,30 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RectTransform))]
-[RequireComponent(typeof(GridLayoutGroup))]
-
-public class TableGenerator : MonoBehaviour
+public class GameSceneGenerator : MonoBehaviour
 {
-    [SerializeField] private GameSettings _gameSettings;
+    [SerializeField] private GameData _gameData;
     [SerializeField] private CardSpawner _cardSpawner;
+    [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private GridLayoutGroup _grid;
 
-    private RectTransform _rectTransform;
-    private GridLayoutGroup _grid;
     private int _rows;
     private int _columns;
     private float _spacingX;
     private float _spacingY;
     private float _maxPossibleCardWidth;
     private float _maxPossibleCardHeight;
-
-
-    private void Awake()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-        _grid = GetComponent<GridLayoutGroup>();
-    }
 
     private void Start()
     {
@@ -34,16 +23,16 @@ public class TableGenerator : MonoBehaviour
         SetGridConstraint();
         SetFinalCardSize();
         SpawnCards();
-        _gameSettings.CanContinueGame = true;
+        _gameData.CanContinueGame = true;
     }
     
     private void GetLayoutInfo()
     {
-        _rows = _gameSettings.RowsAmount;
-        _columns = _gameSettings.ColumnsAmount;
+        _rows = _gameData.RowsAmount;
+        _columns = _gameData.ColumnsAmount;
     }
 
-    private void CalculateMaxPossibleCardSize()
+    private void CalculateMaxPossibleCardSize() // Based on size of safe zone and card layout
     {
         _maxPossibleCardWidth = _rectTransform.sizeDelta.x / _columns;
         _maxPossibleCardHeight = _rectTransform.sizeDelta.y / _rows;

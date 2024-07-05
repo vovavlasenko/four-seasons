@@ -135,10 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1372fcb51aa77ba468bf608adc314a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameSettings: {fileID: 11400000, guid: 6afed780f0050bf41b95fe31e39a339f, type: 2}
+  _gameData: {fileID: 11400000, guid: 6afed780f0050bf41b95fe31e39a339f, type: 2}
+  _mainMenuController: {fileID: 0}
   _rows: 2
   _columns: 2
-  _onButtonClickSound: {fileID: 8300000, guid: fbe1714ce2288c244909a1b6d3f83cd6, type: 3}
 --- !u!1 &182939430750936500
 GameObject:
   m_ObjectHideFlags: 0

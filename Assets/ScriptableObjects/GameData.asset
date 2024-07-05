@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9bde80695f5764bb4d8f76c7b5274b, type: 3}
-  m_Name: GameSettings
+  m_Name: GameData
   m_EditorClassIdentifier: 
-  RowsAmount: 2
-  ColumnsAmount: 2
+  RowsAmount: 4
+  ColumnsAmount: 5
   CardBack: {fileID: 21300000, guid: 5ece458ef465fba4cbb0ccc40edf9d36, type: 3}
   CardFaces:
   - {fileID: -2046621808, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
@@ -26,9 +26,9 @@ MonoBehaviour:
   - {fileID: 587968530, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -1483767056, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   - {fileID: -411250730, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  SpriteIndexes: 00000000020000000000000002000000
-  WasFoundPair: 01010101
-  CardsLeftOnScene: 0
-  CurrentScore: 2
-  IsNewGame: 1
+  SpriteIndexes: 0000000003000000050000000400000008000000070000000100000002000000070000000600000002000000010000000000000003000000050000000900000004000000060000000800000009000000
+  WasFoundPair: 0000000000000100000000010000000000000000
+  CardsLeftOnScene: 18
+  CurrentScore: 1
+  IsNewGame: 0
   CanContinueGame: 0

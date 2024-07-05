@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Game Settings")]
-public class GameSettings : ScriptableObject
+public class GameData : ScriptableObject 
 {
+    // Game settings are saved throughout the game sessions so you are able to start new game or continue
+
     [Header("Grid")]
     public int RowsAmount;
     public int ColumnsAmount;
